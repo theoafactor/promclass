@@ -1,0 +1,21 @@
+version: "3"
+services:
+  promclass:
+    container_name: promclass
+    image: promclass:6
+    ports: 
+    - 1234:1222
+    build: 
+      context: .
+
+  prometheus: 
+    image: prom/prometheus
+    container_name: prometheus
+    command: --config.file=/etc/prometheus/prometheus.yml
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    ports: 
+    - 9090:9090
+    
+
+    
